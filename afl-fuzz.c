@@ -8155,7 +8155,7 @@ int main(int argc, char** argv) {
   enable_ansi_console();
 #endif
 
-  SAYF("WinAFL " WINAFL_VERSION " by <ifratric@google.com>\n");
+  SAYF("Based on WinAFL " WINAFL_VERSION " by <ifratric@google.com>\n");
   SAYF("Based on AFL " cBRI VERSION cRST " by <lcamtuf@google.com>\n");
 
   doc_path = "afl_docs";
