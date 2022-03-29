@@ -8436,7 +8436,7 @@ int main(int argc, char** argv) {
 
     }
 
-  if (!in_dir || !out_dir || !timeout_given || (!drioless && !dynamorio_dir && !use_intelpt)) usage(argv[0]);
+  if (!in_dir || !out_dir || !timeout_given || (!drioless && !dynamorio_dir && !use_intelpt && !use_tinyinst)) usage(argv[0]);
 
   if (!winafl_dll_path) {
     winafl_dll_path = "winafl.dll";
