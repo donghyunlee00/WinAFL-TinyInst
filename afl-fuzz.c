@@ -123,6 +123,7 @@ static u8  skip_deterministic,        /* Skip deterministic stages?       */
            custom_dll_defined = 0;    /* Custom DLL path defined?         */
            persist_dr_cache = 0;      /* Enable persisting code caches?   */
            expert_mode = 0;           /* Running in expert mode with DRIO?*/
+           use_tinyinst = 0;          /* TinyInst?                        */
 
 static s32 out_fd,                    /* Persistent fd for out_file       */
            dev_urandom_fd = -1,       /* Persistent fd for /dev/urandom   */
@@ -8167,7 +8168,7 @@ int main(int argc, char** argv) {
   client_params = NULL;
   winafl_dll_path = NULL;
 
-  while ((opt = getopt(argc, argv, "+i:o:f:m:t:I:T:sdYnCB:S:M:x:QD:b:l:pPc:w:A:eV")) > 0)
+  while ((opt = getopt(argc, argv, "+i:o:f:m:t:I:T:sdYnCB:S:M:x:QD:b:l:pPc:w:A:eVZ")) > 0)
 
     switch (opt) {
       case 's':
@@ -8202,6 +8203,11 @@ int main(int argc, char** argv) {
 
         if (dynamorio_dir) FATAL("Multiple -D options not supported");
         dynamorio_dir = optarg;
+        break;
+
+      case 'Z': /* tinyinst */
+        use_tinyinst = 1;
+
         break;
 
       case 'M': { /* master sync ID */
