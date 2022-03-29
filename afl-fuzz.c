@@ -7466,7 +7466,8 @@ static void usage(u8* argv0) {
         "  -D dir       - directory with DynamoRIO binaries (drrun, drconfig)\n"
         "  -w winafl    - Path to winafl.dll\n"
         "  -P           - use Intel PT tracing mode\n"
-        "  -Y           - enable the static instrumentation mode\n\n"
+        "  -Y           - enable the static instrumentation mode\n"
+        "  -Z           - use TinyInst\n\n"
 
        "Execution control settings:\n\n"
 
