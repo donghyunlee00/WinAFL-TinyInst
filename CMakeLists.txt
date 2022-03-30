@@ -16,6 +16,8 @@ if (${INTELPT})
   add_subdirectory(third_party/processor-trace)
 endif()
 
+add_subdirectory(TinyInst)
+
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 project(test)
@@ -65,11 +67,15 @@ add_executable(afl-showmap
   afl-showmap.c
   )
 
+target_link_libraries(afl-showmap tinyinst)
+
 project(afl-tmin)
 
 add_executable(afl-tmin
   afl-tmin.c
   )
+
+target_link_libraries(afl-tmin tinyinst)
 
 add_library(custom_winafl_server SHARED custom_winafl_server.c custom_winafl_server.def)
 
@@ -131,6 +137,8 @@ endif()
 add_executable(afl-fuzz
   ${AFL_FUZZ_SOURCES}
   )
+
+target_link_libraries(afl-fuzz tinyinst)
 
 if (${INTELPT})
 
