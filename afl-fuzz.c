@@ -4566,7 +4566,7 @@ static void show_stats(void) {
   banner_pad = (80 - banner_len) / 2;
   memset(tmp, ' ', banner_pad);
 
-  sprintf(tmp + banner_pad, "WinAFL " WINAFL_VERSION " based on %s "
+  sprintf(tmp + banner_pad, "Based on WinAFL " WINAFL_VERSION " based on %s "
           cLCY VERSION cLGN " (%s)",  crash_mode ? cPIN "PWR" : 
           cYEL "AFL", use_banner);
 
