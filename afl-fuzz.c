@@ -8421,7 +8421,7 @@ int main(int argc, char** argv) {
 
       case 'e':
         // use WinAFL as a tool to run alongside DynamoRIO
-        if (use_intelpt || drioless) FATAL("Expert mode is only available for DynamoRIO");
+        if (use_intelpt || drioless || use_tinyinst) FATAL("Expert mode is only available for DynamoRIO");
         if (expert_mode) FATAL("Multiple -e options not supported");
         expert_mode = 1;
         break;
