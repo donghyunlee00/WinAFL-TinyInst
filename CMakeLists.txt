@@ -136,6 +136,7 @@ endif()
 
 add_executable(afl-fuzz
   ${AFL_FUZZ_SOURCES}
+  winafltiny.cpp
   )
 
 target_link_libraries(afl-fuzz tinyinst)
