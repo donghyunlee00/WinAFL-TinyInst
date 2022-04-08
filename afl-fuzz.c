@@ -52,6 +52,8 @@
 #include "alloc-inl.h"
 #include "hash.h"
 
+#include "winafltiny.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -2834,6 +2836,19 @@ static u8 run_target(char** argv, u32 timeout) {
 		return run_target_pt(argv, timeout);
 	}
 #endif
+
+  if (use_tinyinst) {
+    int fault_tiny = run_target_tiny(timeout);
+    cook_coverage_tiny();
+
+    #ifdef _WIN64
+      classify_counts((u64*)trace_bits);
+    #else
+      classify_counts((u32*)trace_bits);
+    #endif /* ^_WIN64 */
+
+    return fault_tiny;
+  }
 
   //todo watchdog timer to detect hangs
   DWORD num_read, dwThreadId;
@@ -8458,11 +8473,15 @@ int main(int argc, char** argv) {
 	  if (!pt_options) usage(argv[0]);
 	  optind += pt_options;
 #endif
+  } else if (use_tinyinst) {
+    int tiny_options = tiny_init(argc - optind, argv + optind);
+    if (!tiny_options) usage(argv[0]);
+    optind += tiny_options;
   } else {
 	  extract_client_params(argc, argv);
   }
   optind++;
-  
+
   if (!strcmp(in_dir, out_dir))
     FATAL("Input and output directories can't be the same");
 
