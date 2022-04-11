@@ -12,7 +12,11 @@ https://github.com/DynamoRIO/dynamorio/releases
 
 2. Pull third party dependencies by running `git submodule update --init --recursive` from the WinAFL-TinyInst source directory
 
-3. 
+3. Edit `TinyInst/Windows/debugger.cpp`
+   ```diff
+   -   sinkhole_stds = false;
+   +   sinkhole_stds = true;
+   ```
 
 4. Open Visual Studio Command Prompt (or Visual Studio x64 Win64 Command Prompt
 if you want a 64-bit build). Note that you need a 64-bit winafl.dll build if
